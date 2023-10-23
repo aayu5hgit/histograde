@@ -1,0 +1,5 @@
+[girder.plugin]
+slicer_cli_web = slicer_cli_web.girder_plugin:SlicerCLIWebPlugin
+
+[girder_worker_plugins]
+slicer_cli_web = slicer_cli_web.girder_worker_plugin:SlicerCLIWebWorkerPlugin

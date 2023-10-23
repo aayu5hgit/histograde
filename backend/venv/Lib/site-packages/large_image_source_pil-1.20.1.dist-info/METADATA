@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: large-image-source-pil
+Version: 1.20.1
+Summary: A Pillow tilesource for large_image.
+Home-page: https://github.com/girder/large_image
+Author: Kitware, Inc.
+Author-email: kitware@kitware.com
+License: Apache Software License 2.0
+Keywords: large_image,tile source
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.6
+License-File: LICENSE
+Requires-Dist: large-image (>=1.20.1)
+Requires-Dist: importlib-metadata (<5) ; python_version < "3.8"
+Provides-Extra: girder
+Requires-Dist: girder-large-image (>=1.20.1) ; extra == 'girder'
+
+A Pillow tilesource for large_image.
+
+See the large-image package for more details.

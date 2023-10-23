@@ -44,7 +44,10 @@ const ImageUploader = () => {
           console.log(file);
           var fd = new FormData();
           fd.append("file", file);
-          return fetch('/predict', {method:'POST', body:fd});
+          return fetch("http://localhost:9000/predict", {
+              method: "POST",
+              body: fd
+          });
       })
       .then(function(res){
           return res.json();

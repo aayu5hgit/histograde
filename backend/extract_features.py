@@ -80,9 +80,8 @@ def extract_features(file):
 
     # detect and segment nuclei using local maximum clustering
     local_max_search_radius = 10
-
-    im_nuclei_seg_mask, seeds, maxima = htk.segmentation.nuclear.max_clustering(
-        im_log_max, im_fgnd_mask, local_max_search_radius)
+    im_fgnd_mask = im_fgnd_mask.astype('long')
+    im_nuclei_seg_mask = htk.segmentation.nuclear.max_clustering(im_log_max, im_fgnd_mask, local_max_search_radius)
 
     # filter out small objects
     min_nucleus_area = 60
@@ -109,7 +108,6 @@ def extract_features(file):
     print("Average Intensity",mean_int)
     print("\n")
 
-    rects=[]
     for i in range(len(objProps)):
         if objProps[i].mean_intensity<=mean_int:
             c = [objProps[i].centroid[1], objProps[i].centroid[0], 0]
@@ -124,16 +122,6 @@ def extract_features(file):
             else:
                 section_count[2]+=1
 
-            cur_bbox = {
-                "type":        "rectangle",
-                "center":      c,
-                "width":       width,
-                "height":      height,
-            }
-
-            # plt.plot(c[0], c[1], 'g+')
-            mrect = mpatches.Rectangle([c[0] - 0.5 * width, c[1] - 0.5 * height] ,
-                                        width, height, fill=False, ec='g', linewidth=2)
             #computing cytoplasmic ratio
             
             ratio=(objProps[i].filled_area)/(height*width)
