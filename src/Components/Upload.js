@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AvatarEditor from "react-avatar-editor";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const ImageUploader = () => {
   const navigate = useNavigate()
@@ -44,10 +45,13 @@ const ImageUploader = () => {
           console.log(file);
           var fd = new FormData();
           fd.append("file", file);
-          return fetch("http://localhost:9000/predict", {
-              method: "POST",
-              body: fd
-          });
+          return axios.get('http://localhost:9000/predict',fd,{
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Allow-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            }})
       })
       .then(function(res){
           return res.json();
